@@ -10,6 +10,7 @@ public class Presse : MonoBehaviour
     public TextMeshProUGUI lettre;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI score;
+    public TextMeshProUGUI indicateur;
     public int point = 0;
     public float decrementation = 0.5F;
     public float timeLeft = 30F;
@@ -20,6 +21,7 @@ public class Presse : MonoBehaviour
         temps.set_max(100F);
         temps.set_valeur(100F);
         lettre.text = "M";
+        indicateur.fontSize = 25;
     }
     void Update()
     {
@@ -37,6 +39,8 @@ public class Presse : MonoBehaviour
                 decrementation -= 0.125F;
                 temps.set_valeur(100F);
                 score.color = new Color32(254, 46, 46, 255);
+                indicateur.text = "Trop tard";
+                indicateur.color = new Color32(254, 46, 46, 255);
             }
             if (Input.GetKeyDown(KeyCode.M) && temps.get_valeur() <= 15F)
             {
@@ -44,6 +48,8 @@ public class Presse : MonoBehaviour
                 decrementation += 0.125F;
                 temps.set_valeur(100F);
                 score.color = new Color32(71, 254, 51, 255);
+                indicateur.text = "Parfait!";
+                indicateur.color = new Color32(7, 226, 0, 255);
             }
             else if (Input.GetKeyDown(KeyCode.M) && temps.get_valeur() <= 40F)
             {
@@ -51,6 +57,8 @@ public class Presse : MonoBehaviour
                 decrementation += 0.0625F;
                 temps.set_valeur(100F);
                 score.color = new Color32(71, 254, 51, 255);
+                indicateur.text = "Pas mal";
+                indicateur.color = new Color32(7, 226, 0, 255);
             }
             else if (Input.GetKeyDown(KeyCode.M))
             {
@@ -58,6 +66,8 @@ public class Presse : MonoBehaviour
                 decrementation -= 0.0625F;
                 temps.set_valeur(100F);
                 score.color = new Color32(254, 46, 46, 255);
+                indicateur.text = "Trop tôt";
+                indicateur.color = new Color32(254, 46, 46, 255);
             }
             if (decrementation <= 0.0625F)
             {
