@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Halteres : MonoBehaviour
 {
-    public GameObject text0;
-    public GameObject text1;
-    public GameObject text2;
-    public GameObject text3;
-    public GameObject text4;
-    public GameObject text5;
-    public GameObject text6;
-    public GameObject text7;
-    public GameObject text8;
-    public GameObject text9;
-    public GameObject text10;
-    public GameObject text11;
+    public TextMeshProUGUI text0;
+    public TextMeshProUGUI text1;
+    public TextMeshProUGUI text2;
+    public TextMeshProUGUI text3;
+    public TextMeshProUGUI text4;
+    public TextMeshProUGUI text5;
+    public TextMeshProUGUI text6;
+    public TextMeshProUGUI text7;
+    public TextMeshProUGUI text8;
+    public TextMeshProUGUI text9;
+    public TextMeshProUGUI text10;
+    public TextMeshProUGUI text11;
+    public TextMeshProUGUI score;
+    public TextMeshProUGUI timer;
     public char[] tabAlea = new char[111];
     public int point = 0;
     public int upWin = 0;
@@ -30,18 +33,18 @@ public class Halteres : MonoBehaviour
             Random rnd = new Random();
             tabAlea[i] = (char)Random.Range('A', 'Z');
         }
-        text0.GetComponent<Text>().text = "[" + tabAlea[0] + "]";
-        text1.GetComponent<Text>().text = "[" + tabAlea[1] + "]";
-        text2.GetComponent<Text>().text = "[" + tabAlea[2] + "]";
-        text3.GetComponent<Text>().text = "[" + tabAlea[3] + "]";
-        text4.GetComponent<Text>().text = "[" + tabAlea[4] + "]";
-        text5.GetComponent<Text>().text = "[" + tabAlea[5] + "]";
-        text6.GetComponent<Text>().text = "[" + tabAlea[6] + "]";
-        text7.GetComponent<Text>().text = "[" + tabAlea[7] + "]";
-        text8.GetComponent<Text>().text = "[" + tabAlea[8] + "]";
-        text9.GetComponent<Text>().text = "[" + tabAlea[9] + "]";
-        text10.GetComponent<Text>().text = "[" + tabAlea[10] + "]";
-        text11.GetComponent<Text>().text = "[" + tabAlea[11] + "]";
+        text0.text = tabAlea[0].ToString();
+        text1.text = tabAlea[1].ToString();
+        text2.text = tabAlea[2].ToString();
+        text3.text = tabAlea[3].ToString();
+        text4.text = tabAlea[4].ToString();
+        text5.text = tabAlea[5].ToString();
+        text6.text = tabAlea[6].ToString();
+        text7.text = tabAlea[7].ToString();
+        text8.text = tabAlea[8].ToString();
+        text9.text = tabAlea[9].ToString();
+        text10.text = tabAlea[10].ToString();
+        text11.text = tabAlea[11].ToString();
     }
 
     // Update is called once per frame
@@ -50,18 +53,21 @@ public class Halteres : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (timeLeft > 0)
         {
-            text0.GetComponent<Text>().text = "[" + tabAlea[upWin] + "]";
-            text1.GetComponent<Text>().text = "[" + tabAlea[upWin + 1] + "]";
-            text2.GetComponent<Text>().text = "[" + tabAlea[upWin + 2] + "]";
-            text3.GetComponent<Text>().text = "[" + tabAlea[upWin + 3] + "]";
-            text4.GetComponent<Text>().text = "[" + tabAlea[upWin + 4] + "]";
-            text5.GetComponent<Text>().text = "[" + tabAlea[upWin + 5] + "]";
-            text6.GetComponent<Text>().text = "[" + tabAlea[upWin + 6] + "]";
-            text7.GetComponent<Text>().text = "[" + tabAlea[upWin + 7] + "]";
-            text8.GetComponent<Text>().text = "[" + tabAlea[upWin + 8] + "]";
-            text9.GetComponent<Text>().text = "[" + tabAlea[upWin + 9] + "]";
-            text10.GetComponent<Text>().text = "[" + tabAlea[upWin + 10] + "]";
-            text11.GetComponent<Text>().text = "[" + tabAlea[upWin + 11] + "]";
+            int t = (int)timeLeft;
+            timer.text = t.ToString() + "s";
+            score.text = "score: " + point.ToString();
+            text0.text = tabAlea[upWin].ToString();
+            text1.text = tabAlea[upWin + 1].ToString();
+            text2.text = tabAlea[upWin + 2].ToString();
+            text3.text = tabAlea[upWin + 3].ToString();
+            text4.text = tabAlea[upWin + 4].ToString();
+            text5.text = tabAlea[upWin + 5].ToString();
+            text6.text = tabAlea[upWin + 6].ToString();
+            text7.text = tabAlea[upWin + 7].ToString();
+            text8.text = tabAlea[upWin + 8].ToString();
+            text9.text = tabAlea[upWin + 9].ToString();
+            text10.text = tabAlea[upWin + 10].ToString();
+            text11.text = tabAlea[upWin + 11].ToString();
 
             if (Input.anyKeyDown)
             {
@@ -74,14 +80,16 @@ public class Halteres : MonoBehaviour
                         {
                             upWin++;
                             point++;
+                            score.color = new Color32(71, 254, 51, 255);
                         }
-                        else point--;
-                        Debug.Log("score: " + point);
-                        Debug.Log("temps restant: " + timeLeft + " s.");
+                        else
+                        {
+                            point--;
+                            score.color = new Color32(254, 46, 46, 255);
+                        }
                     }
                 }
             }
         }
-        else Debug.Log("Le jeu est fini, votre score est de: " + point);
     }
 }
