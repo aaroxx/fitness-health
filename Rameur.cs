@@ -2,20 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Rameur : MonoBehaviour
 {
     public bool leftpress = true;
     public int point = 0;
     public float timeLeft = 30F;
+    public TextMeshProUGUI timer;
+    public TextMeshProUGUI score;
+
     // Update is called once per frame
     void Update()
     {
         timeLeft -= Time.deltaTime;
         if (timeLeft > 0)
         {
+            int t = (int)timeLeft;
+            timer.text = t.ToString() + "s";
+            score.text = "score: " + point.ToString();
             float x = gameObject.transform.position.x;
-            float d = 5F;
+            float d = 150F;
 
 
             if (Input.GetKeyDown(KeyCode.RightArrow) && leftpress)
@@ -28,10 +35,7 @@ public class Rameur : MonoBehaviour
                     leftpress = true;
                     gameObject.transform.position = new Vector3(x - d, 0, 0);
                     point++;
-                    Debug.Log("score: " + point);
-                    Debug.Log("temps restant: " + timeLeft + " s.");
             }
         }
-        else Debug.Log("Le jeu est fini, votre score est de: " + point);
     }
 }
