@@ -45,6 +45,8 @@ public class Halteres : MonoBehaviour
         text9.text = tabAlea[9].ToString();
         text10.text = tabAlea[10].ToString();
         text11.text = tabAlea[11].ToString();
+
+        text0.color = new Color32(0, 0, 0, 255);
     }
 
     // Update is called once per frame
@@ -53,6 +55,8 @@ public class Halteres : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (timeLeft > 0)
         {
+            if (timeLeft <= 6) timer.color = new Color32(254, 46, 46, 255);
+
             int t = (int)timeLeft;
             timer.text = t.ToString() + "s";
             score.text = "score: " + point.ToString();
@@ -81,11 +85,13 @@ public class Halteres : MonoBehaviour
                             upWin++;
                             point++;
                             score.color = new Color32(71, 254, 51, 255);
+                            text0.color = new Color32(0, 0, 0, 255);
                         }
                         else
                         {
                             point--;
                             score.color = new Color32(254, 46, 46, 255);
+                            text0.color = new Color32(254, 46, 46, 255);
                         }
                     }
                 }
