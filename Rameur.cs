@@ -18,6 +18,8 @@ public class Rameur : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (timeLeft > 0)
         {
+            if(timeLeft<=6) timer.color = new Color32(254, 46, 46, 255);
+
             int t = (int)timeLeft;
             timer.text = t.ToString() + "s";
             score.text = "score: " + point.ToString();
