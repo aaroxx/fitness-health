@@ -28,6 +28,8 @@ public class Presse : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (timeLeft > 0)
         {
+            if(timeLeft<=6) timer.color = new Color32(254, 46, 46, 255);
+
             int t = (int)timeLeft;
             timer.text = t.ToString() + "s";
             score.text = "score: " + point.ToString();
@@ -59,6 +61,10 @@ public class Presse : MonoBehaviour
                 score.color = new Color32(71, 254, 51, 255);
                 indicateur.text = "Pas mal";
                 indicateur.color = new Color32(7, 226, 0, 255);
+            }
+            else if (temps.get_valeur()<=50 && temps.get_valeur()>=45)
+            {
+                indicateur.text = "";
             }
             else if (Input.GetKeyDown(KeyCode.M))
             {
